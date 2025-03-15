@@ -52,3 +52,8 @@ export default tseslint.config({
   },
 })
 ```
+
+This project using d3 for visualization. 
+```
+npm install d3
+```
