@@ -84,8 +84,8 @@ const LineageTree: React.FC = () => {
             .data(root.descendants())
             .enter()
             .append("text")
-            .attr("x", d => (d.y !== undefined ? d.y + 14 : 0)) // ✅ Ensure y is defined
-            .attr("y", d => (d.x !== undefined ? d.x : 0)) // ✅ Ensure x is defined
+            .attr("x", d => (d.y !== undefined ? d.y - 40 : -40 )) // ✅ Ensure y is defined
+            .attr("y", d => (d.x !== undefined ? d.x - 20: -20)) // ✅ Ensure x is defined
             .text(d => d.data.name)
             .attr("font-size", "20px")
             .attr("fill", "#333");

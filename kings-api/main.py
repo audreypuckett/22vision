@@ -14,25 +14,25 @@ app.add_middleware(
 )
 
 kings = {
-    "name": "King David",
+    "name": "David",
     "reign": "1010–970 BC",
     "nation": "Unified Kingdom",
     "children": [
         {
-            "name": "King Solomon",
+            "name": "Solomon",
             "reign": "970–931 BC",
             "nation": "Unified Kingdom",
             "children": [
                 {
-                    "name": "Rehoboam",
-                    "reign": "931–913 BC",
-                    "nation": "Judah",
-                    "children": []
-                },
-                {
                     "name": "Jeroboam I",
                     "reign": "931–910 BC",
                     "nation": "Israel",
+                    "children": []
+                },
+                {
+                    "name": "Rehoboam",
+                    "reign": "931–913 BC",
+                    "nation": "Judah",
                     "children": []
                 }
             ]
