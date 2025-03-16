@@ -5,8 +5,8 @@ class King(Person):
     def __init__(
             self,
             name: str,
-            reign_start: int,
-            reign_end: Optional[int],
+            reign_start: str,
+            reign_end: Optional[str],
             age_kinged: int,
             years_reigned: int,
             months_reigned: Optional[int] = 0,
