@@ -39,7 +39,6 @@ const LineageTree: React.FC = () => {
         const svg = d3.select(svgRef.current)
             .attr("width", width)
             .attr("height", height)
-            .attr("viewBox", [-width / 2, -height / 2, width, height]) // Centered view
             .style("background", "#f8f9fa"); // Light background for contrast
 
         svg.selectAll("*").remove(); // Clear previous elements
@@ -53,8 +52,6 @@ const LineageTree: React.FC = () => {
         // ✅ Swap width & height to make it horizontal
         const treeLayout = d3.tree<KingNode>().size([height - 200, width - 300]);
         treeLayout(root); // ✅ Ensures x and y positions are assigned
-
-        console.log("Tree Nodes with Positions:", root.descendants().map(d => ({ name: d.data.name, x: d.x, y: d.y }))); // Debugging
 
         // ✅ Swap x and y coordinates to make the tree horizontal
         g.selectAll("line")
