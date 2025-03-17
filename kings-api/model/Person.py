@@ -1,14 +1,19 @@
-from typing import List
-import Highlight
+from typing import List, Optional
+from model.Highlight import Highlight
 
 class Person:
-    def __init__(self, name: str, role: str):
+    def __init__(self, name: str, role: str, id: Optional[int] = None):
+        self._id = id
         self._name = name
         self._role = role
         self._alternative_names: List[str] = []
         self._highlights: List[Highlight] = []  # Now storing Highlight objects
 
     # Getters
+    def get_id(self) -> Optional[int]:
+        """Returns the person's database ID."""
+        return self._id
+
     def get_name(self) -> str:
         """Returns their name."""
         return self._name

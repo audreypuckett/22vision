@@ -1,6 +1,6 @@
 from enum import Enum
 
-class BibleBook(Enum):
+class BookEnum(Enum):
     # Old Testament
     GENESIS = "Genesis"
     EXODUS = "Exodus"

@@ -1,8 +1,8 @@
 
-import BibleBook
+from model.BookEnum import BookEnum
 
 class Highlight:
-    def __init__(self, note: str, book: BibleBook, chapter: int, verse: str = None):
+    def __init__(self, note: str, book: BookEnum, chapter: int, verse: str = None):
         self._note = note
         self._book = book
         self._chapter = chapter
@@ -12,7 +12,7 @@ class Highlight:
         """Returns the note."""
         return self._note
 
-    def get_book(self) -> BibleBook:
+    def get_book(self) -> BookEnum:
         """Returns the book."""
         return self._book
 

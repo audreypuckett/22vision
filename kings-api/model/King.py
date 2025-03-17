@@ -1,4 +1,6 @@
-import Person
+from model.Person import Person
+from model.KingsEnum import KingsEnum
+from model.StatusEnum import StatusEnum  # ✅ Import StatusEnum
 from typing import Optional
 
 class King(Person):
@@ -10,85 +12,54 @@ class King(Person):
             age_kinged: int,
             years_reigned: int,
             months_reigned: Optional[int] = 0,
+            kingship: KingsEnum = KingsEnum.UNITED,
+            gods_eyes: StatusEnum = StatusEnum.DID_NOT_DO_RIGHT,  # ✅ Default to neutral
             father: Optional[Person] = None,
             mother: Optional[Person] = None,
-            predecessor: Optional["King"] = None
+            predecessor: Optional[int] = None,
+            id: Optional[int] = None
     ):
-        super().__init__(name, "King")
-        self._reign_start = reign_start
-        self._reign_end = reign_end
-        self._age_kinged = age_kinged
-        self._years_reigned = years_reigned
-        self._months_reigned = months_reigned
-        self._father = father
-        self._mother = mother
-        self._predecessor = predecessor
+        super().__init__(name, "King", id)
+        self.reign_start = reign_start
+        self.reign_end = reign_end
+        self.age_kinged = age_kinged
+        self.years_reigned = years_reigned
+        self.months_reigned = months_reigned
+        self.kingship = kingship
+        self.gods_eyes = gods_eyes  # ✅ New attribute
+        self.father = father
+        self.mother = mother
+        self.predecessor_id = predecessor
 
     # Getters
-    def get_reign_start(self) -> int:
-        return self._reign_start
-
-    def get_reign_end(self) -> Optional[int]:
-        return self._reign_end
-
-    def get_age_kinged(self) -> int:
-        return self._age_kinged
-
-    def get_years_reigned(self) -> int:
-        return self._years_reigned
-
-    def get_months_reigned(self) -> int:
-        return self._months_reigned
-
-    def get_father(self) -> Optional[Person]:
-        return self._father
-
-    def get_mother(self) -> Optional[Person]:
-        return self._mother
-
-    def get_predecessor(self) -> Optional["King"]:
-        return self._predecessor
+    def get_gods_eyes(self) -> StatusEnum:
+        return self.gods_eyes
 
     # Setters
-    def set_reign_end(self, reign_end: int):
-        """Updates the reign end year."""
-        self._reign_end = reign_end
-
-    def set_years_reigned(self, years_reigned: int, months_reigned: int = 0):
-        """Updates the years reigned and optionally the months."""
-        self._years_reigned = years_reigned
-        self._months_reigned = months_reigned
-
-    def set_predecessor(self, predecessor: "King"):
-        """Updates the predecessor."""
-        self._predecessor = predecessor
+    def set_gods_eyes(self, status: StatusEnum):
+        """Sets the king's status in God's eyes."""
+        if not isinstance(status, StatusEnum):
+            raise ValueError("gods_eyes must be a valid StatusEnum value")
+        self.gods_eyes = status
 
     # __str__ method
     def __str__(self) -> str:
-        reign_period = f"{self._reign_start} - {self._reign_end if self._reign_end else 'Present'}"
-        years_reigned_str = (
-            f"{self._years_reigned} years"
-            if self._years_reigned > 0
-            else f"{self._months_reigned} months"
-        )
-        father_str = f", Father: {self._father.get_name()}" if self._father else ""
-        mother_str = f", Mother: {self._mother.get_name()}" if self._mother else ""
-        predecessor_str = f", Predecessor: {self._predecessor.get_name()}" if self._predecessor else ""
-
-        return f"King {self._name} (Reigned: {reign_period}, Age Kinged: {self._age_kinged}, {years_reigned_str}{father_str}{mother_str}{predecessor_str})"
+        id_str = f"ID: {self._id}, " if self._id else ""
+        return f"King {self._name} ({id_str}Reigned: {self.reign_start} - {self.reign_end if self.reign_end else 'Present'}, Kingdom: {self.kingship.value}, God's Eyes: {self.gods_eyes.value})"
 
     # to_dict method
     def to_dict(self) -> dict:
-        """Converts the object to a dictionary format."""
-        return {
-            "name": self._name,
-            "role": self._role,
-            "reign_start": self._reign_start,
-            "reign_end": self._reign_end,
-            "age_kinged": self._age_kinged,
-            "years_reigned": self._years_reigned,
-            "months_reigned": self._months_reigned,
-            "father": self._father.get_name() if self._father else None,
-            "mother": self._mother.get_name() if self._mother else None,
-            "predecessor": self._predecessor.get_name() if self._predecessor else None
-        }
+        base_dict = super().to_dict()
+        base_dict.update({
+            "gods_eyes": self.gods_eyes.value,
+            "reign_start": self.reign_start,
+            "reign_end": self.reign_end,
+            "age_kinged": self.age_kinged,
+            "years_reigned": self.years_reigned,
+            "months_reigned": self.months_reigned,
+            "kingship": self.kingship.value,
+            "father": self.father.get_name() if self.father else None,
+            "mother": self.mother.get_name() if self.mother else "Unnamed",
+            "predecessor_id": self.predecessor_id
+        })
+        return base_dict
