@@ -14,15 +14,15 @@ public class Highlight {
     @GeneratedValue
     private String id;
     private BookEnum book;
+    private String note;
     private int chapter;
     private int verse;
 
     @Override
     public String toString() {
         return "Highlight{" +
-                "book=" + book +
-                ", chapter=" + chapter +
-                ", verse=" + verse +
+                note +
+                '\'' + book + " " + chapter + ":" + verse +
                 '}';
     }
 }

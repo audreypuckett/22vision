@@ -19,4 +19,18 @@ public class Person {
     private List<String> alternativeNames;
     @OneToMany
     private List<Highlight> highlights;
+
+    public Person(){}
+
+    public Person(String role){
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", role='" + role + '\'' +
+                ", also known as =" + alternativeNames;
+    }
 }
