@@ -1,13 +1,9 @@
 package bible.vision.kingsapi.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
@@ -25,6 +21,46 @@ public class Person {
 
     public Person(String role){
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public List<String> getAlternativeNames() {
+        return alternativeNames;
+    }
+
+    public List<Highlight> getHighlights() {
+        return highlights;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setAlternativeNames(List<String> alternativeNames) {
+        this.alternativeNames = alternativeNames;
+    }
+
+    public void setHighlights(List<Highlight> highlights) {
+        this.highlights = highlights;
     }
 
     @Override
